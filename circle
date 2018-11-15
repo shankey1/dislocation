@@ -1,0 +1,35 @@
+def circle_around_point(turtle, radius):
+    is_down = turtle.isdown()
+
+    if is_down:
+        turtle.penup()
+    turtle.forward(radius)  # move from the center to the circumference
+    turtle.left(90)  # face ready to start drawing the circle
+    turtle.pendown()
+
+    turtle.circle(radius)
+
+    turtle.penup()
+    turtle.right(90)  # face awary from the center of the circle
+    turtle.backward(radius)  # go back to the center of the circle
+
+    if is_down:
+        turtle.pendown()  # restore original pen state
+
+def concentric_circles(turtle, radius):
+    for r in range(radius, 0, -10):
+        circle_around_point(turtle, r)
+import turtle
+
+STAMP_SIZE = 20
+
+radius = int(input("Please input a radius: "))
+
+turtle.shape('circle')
+turtle.fillcolor('white')
+
+for r in range(radius, 0, -10):
+    turtle.shapesize(r * 2 / STAMP_SIZE)
+    turtle.stamp()
+
+turtle.mainloop()
